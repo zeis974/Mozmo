@@ -1,0 +1,334 @@
+*,
+::before,
+::after {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+button,
+li,
+a {
+ text-decoration: none;
+ border: none;
+}
+
+:root {
+ --black: #161d3a;
+}
+
+body {
+ background: var(--black);
+ font-size: 16px;
+ font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+  sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+
+/* || Header */
+
+nav {
+ display: flex;
+ padding: 20px 10px;
+ justify-content: space-between;
+ align-items: center;
+}
+
+nav .nav-links {
+ display: flex;
+ justify-content: space-around;
+}
+
+nav .nav-links li {
+ display: inline-block;
+ padding: 20px;
+}
+
+nav .nav-links li a {
+ color: #ecf0f1;
+ letter-spacing: 2px;
+ font-weight: bold;
+ font-size: 14px;
+ position: relative;
+ padding: 6px 0;
+ transition: 0.5s;
+}
+
+nav .nav-links li a:hover {
+ color: rgba(236, 240, 241, 0.7);
+}
+
+nav .nav-links li a::after {
+ position: absolute;
+ content: "";
+ top: 100%;
+ left: 0;
+ width: 95%;
+ height: 3px;
+ background: #3498db;
+ transform: scaleX(0);
+ transform-origin: right;
+ transition: transform 0.5s;
+}
+
+nav .nav-links li a:hover::after {
+ transform: scaleX(1);
+ transform-origin: left;
+}
+
+nav .nav-links li:nth-child(5) a::after {
+ transform: scale(1);
+ pointer-events: none;
+}
+
+nav .burger {
+ display: none;
+ margin-right: 10px;
+ width: 60px;
+ height: 60px;
+}
+
+nav .nav-links.active {
+ visibility: visible;
+ transition: visibility 400ms ease-in;
+ transition-delay: 0.5s;
+}
+
+nav .nav-links.active li a {
+ color: #ecf0f1;
+}
+
+@media screen and (max-width: 960px) {
+ nav .nav-links {
+  position: absolute;
+  display: flex;
+  height: 60vh;
+  top: 25vh;
+  left: 0;
+  background-color: #1b4585;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  visibility: hidden;
+  z-index: 20;
+ }
+
+ nav .burger.active::before {
+  transform: scale(50);
+  position: fixed;
+  height: inherit;
+  width: inherit;
+ }
+
+ nav .nav-links li {
+  opacity: 0;
+ }
+
+ nav .burger {
+  display: block;
+  position: relative;
+  z-index: 10;
+ }
+
+ nav .burger::before {
+  content: "";
+  width: 99%;
+  height: 99%;
+  position: absolute;
+  background: #1b4585;
+  border-radius: 50%;
+  transition: transform 400ms ease-in;
+  z-index: -1;
+ }
+}
+
+@keyframes navLinkFade {
+ from {
+  opacity: 0;
+  transform: translateX(50px);
+ }
+ to {
+  opacity: 1;
+  transform: translateX(0px);
+ }
+}
+
+/* || Banner */
+
+.container {
+ max-width: 1100px;
+ margin: 100px auto;
+}
+
+.container .banner {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+}
+
+.container .banner h1 {
+ color: transparent;
+ font-size: 3.5em;
+ background: linear-gradient(
+  to left,
+  #d4fc79,
+  #96e6a1,
+  #bef838,
+  #96e6a1,
+  #d4fc79
+ );
+ -webkit-background-clip: text;
+ background-clip: text;
+ /* line-height: 1; */
+ animation: animate 6s linear infinite;
+ -webkit-background-size: 500%;
+ background-size: 500%;
+}
+
+@keyframes animate {
+ 0% {
+  background-position: 0 100%;
+ }
+ 50% {
+  background-position: 100% 0;
+ }
+ 100% {
+  background-position: 0 100%;
+ }
+}
+
+.container .banner span {
+ color: #9d9d9d;
+ font-weight: 600;
+}
+
+.container .banner > span {
+ color: #9d9d9d;
+ font-size: 0.9em;
+ font-weight: 700;
+}
+
+.container .banner > p {
+ color: #ebfeff;
+ margin: 20px 0;
+ max-width: 650px;
+}
+
+.container .banner .list {
+ display: flex;
+ margin-top: 15px;
+ justify-content: space-between;
+}
+
+.container .banner .list p {
+ text-transform: uppercase;
+ color: white;
+ padding: 10px 50px;
+}
+
+.container .banner .list p span {
+ display: block;
+ font-size: 3em;
+ color: white;
+ font-weight: 800;
+}
+
+@media screen and (max-width: 960px) {
+ .container .banner h1 {
+  font-size: 3em;
+ }
+
+ .container .banner p {
+  padding: 0 5px;
+ }
+
+ .container .banner .list {
+  flex-direction: column-reverse;
+ }
+
+ .container .banner .list p span {
+  font-size: 2em;
+ }
+}
+
+/* Gallery */
+
+.container .gallery {
+ margin: 30px 0;
+ text-align: center;
+}
+
+.gallery {
+ display: flex;
+ flex-wrap: wrap;
+}
+.gallery .gallery-item {
+ box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
+ flex: 1 0 20rem;
+ border-radius: 5px;
+ margin: 1rem;
+ overflow: hidden;
+ position: relative;
+}
+
+.gallery .gallery-item .gallery-image {
+ display: block;
+ -webkit-filter: grayscale(70%);
+ filter: grayscale(70%);
+ height: 100%;
+ object-fit: cover;
+ transition: transform 400ms ease-out;
+ width: 100%;
+}
+
+.gallery .gallery-item .gallery-image:hover {
+ -webkit-filter: grayscale(0%);
+ filter: grayscale(0%);
+ transform: scale(1.15);
+}
+
+.gallery .gallery-tools {
+ position: absolute;
+ display: flex;
+ padding: 15px;
+ background: #000;
+ opacity: 0.7;
+ border-radius: 30px 0 0 0;
+ width: calc(100% - 100px);
+ height: 50px;
+ right: 0;
+ bottom: -50px;
+ transition: 400ms;
+}
+
+.gallery .gallery-tools span {
+ font-size: 1em;
+ color: white;
+ width: 100%;
+ font-weight: 500;
+ line-height: 1;
+ /* margin-right: 10px; */
+}
+
+.gallery .gallery-item:hover .gallery-tools {
+ transform: translateY(-50px);
+}
+
+/*
+The following rule will only run if your browser supports CSS grid.
+Remove or comment-out the code block below to see how the browser will fall-back to flexbox styling. 
+*/
+/* 
+@supports (display: grid) {
+ .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  grid-gap: 2rem;
+ }
+ .gallery,
+ .gallery-item {
+  margin: 0;
+ }
+} */

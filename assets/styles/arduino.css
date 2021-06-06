@@ -1,0 +1,263 @@
+*,
+::before,
+::after {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ scroll-behavior: smooth;
+}
+
+::selection {
+ background-color: rgba(254, 20, 10, 0.4);
+}
+
+:root {
+ --black: #161d3a;
+ --Mozmocolor: #fe140a;
+ --dark-blue: #040d21;
+ --green: #2ecc71;
+ --dark-green: #077e39;
+ --grey: #5f7172;
+ --grey-2: #8193b2;
+}
+
+button,
+ul,
+li,
+a {
+ list-style: none;
+ text-decoration: none;
+ border: none;
+}
+
+body {
+ background: var(--black);
+ font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+  sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+
+/* || Header */
+
+header {
+ position: relative;
+ min-height: 8vh;
+}
+
+nav {
+ display: flex;
+ padding: 20px 10px;
+ justify-content: space-between;
+ align-items: center;
+}
+
+nav .nav-links {
+ display: flex;
+ justify-content: space-around;
+}
+
+nav .nav-links li {
+ display: inline-block;
+ padding: 20px;
+}
+
+nav .nav-links li a {
+ color: #ecf0f1;
+ letter-spacing: 2px;
+ font-weight: bold;
+ font-size: 14px;
+ position: relative;
+ padding: 6px 0;
+ transition: 0.5s;
+}
+
+nav .nav-links li a:hover {
+ color: rgba(236, 240, 241, 0.7);
+}
+
+nav .nav-links li a::after {
+ position: absolute;
+ content: "";
+ top: 100%;
+ left: 0;
+ width: 95%;
+ height: 3px;
+ background: #3498db;
+ transform: scaleX(0);
+ transform-origin: right;
+ transition: transform 0.5s;
+}
+
+nav .nav-links li a:hover::after {
+ transform: scaleX(1);
+ transform-origin: left;
+}
+
+nav .burger {
+ display: none;
+ margin-right: 10px;
+ width: 60px;
+ height: 60px;
+}
+
+nav .nav-links.active {
+ visibility: visible;
+ transition: visibility 400ms ease-in;
+ transition-delay: 0.5s;
+}
+
+nav .nav-links.active li a {
+ color: #ecf0f1;
+}
+
+nav .nav-links li:nth-child(4) a::after,
+nav .nav-links li:nth-child(4) a {
+ transform: scaleX(1);
+ transform-origin: left;
+ pointer-events: none;
+}
+
+@media screen and (max-width: 960px) {
+ nav .nav-links {
+  position: absolute;
+  display: flex;
+  height: 60vh;
+  top: 25vh;
+  left: 0;
+  background-color: #1b4585;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  visibility: hidden;
+  z-index: 20;
+ }
+
+ nav .burger.active::before {
+  transform: scale(50);
+  position: fixed;
+  height: inherit;
+  width: inherit;
+ }
+
+ nav .nav-links li {
+  opacity: 0;
+ }
+
+ nav .burger {
+  display: block;
+  position: relative;
+  z-index: 10;
+ }
+
+ nav .burger::before {
+  content: "";
+  width: 99%;
+  height: 99%;
+  position: absolute;
+  background: #1b4585;
+  border-radius: 50%;
+  transition: transform 400ms ease-in;
+  z-index: -1;
+ }
+}
+
+@keyframes navLinkFade {
+ from {
+  opacity: 0;
+  transform: translateX(50px);
+ }
+ to {
+  opacity: 1;
+  transform: translateX(0px);
+ }
+}
+
+/* || Section 1 */
+
+.container {
+ max-width: 1100px;
+ margin: 50px auto;
+}
+
+section#sec-1 {
+ text-align: center;
+ display: flex;
+ flex-direction: column;
+}
+
+section#sec-1 .content p {
+ margin: 20px 10px;
+ color: white;
+}
+
+.content h1 {
+ color: transparent;
+ font-size: clamp(3em, 5vw, 3.5em);
+ background: linear-gradient(
+  to left,
+  #008184,
+  #04dee2,
+  #008184,
+  #04dee2,
+  #008184
+ );
+ -webkit-background-clip: text;
+ background-clip: text;
+ line-height: 1;
+ animation: animate 6s linear infinite;
+ -webkit-background-size: 500%;
+ background-size: 500%;
+}
+
+@keyframes animate {
+ 0%,
+ 100% {
+  background-position: 0 100%;
+ }
+ 50% {
+  background-position: 100% 0;
+ }
+}
+
+/* || Section 2 */
+
+section#sec-2 {
+ position: relative;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin: 50px 10px;
+}
+
+pre {
+ width: calc(100% - 1em);
+}
+
+code {
+ word-wrap: break-word;
+ font-size: clamp(2px, 5vw, 1em) !important;
+ position: relative;
+ background: #f0f0f0 !important;
+ border-radius: 8px;
+}
+
+pre::after {
+ content: "";
+ position: absolute;
+ width: calc(100% - 1em);
+ height: 300px;
+ border-radius: 8px;
+ background: linear-gradient(rgb(123 93 93 / 0%), rgb(250 250 250) 70%);
+ bottom: 0;
+}
+
+.buttons {
+ margin-top: 20px;
+}
+
+.buttons a {
+ color: white;
+ background: #008184;
+ padding: 8px 10px;
+ border-radius: 8px;
+}

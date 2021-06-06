@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+ <head>
+  <title>Arduino | Mozmo</title>
+  <meta charset="UTF-8" />
+  <link
+   rel="icon"
+   href="https://cdn.glitch.com/bfb6d462-028f-4ce1-847c-dd791f73751d%2Fmozmo_revert.svg?v=1617990169725"
+  />
+  <link rel="stylesheet" href="../assets/styles/arduino.css" />
+  <link rel="stylesheet" href="../assets/styles/icons.css" />
+  <link rel="stylesheet" href="../assets/styles/highlist.min.css" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ </head>
+ <body>
+  <header>
+   <nav>
+    <div class="logo">
+     <a href="/">
+      <img
+       width="60"
+       height="60"
+       src="https://cdn.glitch.com/bfb6d462-028f-4ce1-847c-dd791f73751d%2Fmozmo_revert.svg?v=1617990169725"
+       alt="Logo de Mozmo"
+       loading="lazy"
+      />
+     </a>
+    </div>
+    <ul class="nav-links">
+     <li><a href="/#">Découvrir Mozmo</a></li>
+     <li><a href="/solidworks/">SolidWorks</a></li>
+     <li><a href="/application/">Application</a></li>
+     <li><a href="/arduino/">Arduino</a></li>
+     <li><a href="/sysml/">Diagramme SYSML</a></li>
+    </ul>
+    <div class="burger">
+     <svg class="ham hamRotate ham8" viewbox="0 0 100 100" z-index="50">
+      <path
+       class="line top"
+       d="m30 33h40c3.7 0 7.5 3.1 7.5 8.6 0 5.5-2.7 8.4-7.5 8.4h-20"
+      />
+      <path class="line middle" d="m30 50h40" />
+      <path
+       class="line bottom"
+       d="m70 67h-40c0 0-7.5-0.8-7.5-8.4 0-7.6 7.5-8.6 7.5-8.6h20"
+      />
+     </svg>
+    </div>
+   </nav>
+  </header>
+  <div class="container">
+   <section id="sec-1">
+    <div class="content">
+     <h1>Arduino</h1>
+     <p>
+      Le code source du projet permet de gérer le robot avec son smartphone mais
+      aussi les moteurs, le pont en h et tout les autres composants donc est
+      équipée Mozmo
+     </p>
+    </div>
+    <div class="buttons">
+     <a
+      href="https://cdn.glitch.com/bfb6d462-028f-4ce1-847c-dd791f73751d%2Fmozmo.ino?v=1621166439946"
+      >Télécharger le fichier (.ino)</a
+     >
+    </div>
+   </section>
+   <section id="sec-2">
+    <pre class="codeContainer"><code class="lang-c">
+  #include &lt;SPI.h&gt;
+  #include &lt;Wire.h&gt;
+  #include &lt;Keypad.h&gt;
+  #include &lt;Adafruit_GFX.h&gt;
+  #include &lt;Adafruit_SSD1306.h&gt;
+  #include &lt;SoftwareSerial.h&gt;
+  #include &lt;Servo.h&gt;
+  Servo monServo;
+  #define Password_Length 5
+  #define SCREEN_WIDTH 128
+  #define SCREEN_HEIGHT 64
+  #define RxD 1
+  #define TxD 0
+  #define DEBUG_ENABLED 1
+  SoftwareSerial blueToothSerial(RxD, TxD);
+  #define BUZZER_PIN 2
+  #define NOTE_G4 392
+  #define NOTE_D5 587
+  #define NOTE_C6 1047
+  #define OLED_MOSI SDA
+  #define OLED_CLK SCL
+  #define OLED_DC 11
+  #define OLED_CS 12
+  #define OLED_RESET 13
+              
+  Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, <br>OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+              
+  const byte ROWS = 4;
+  const byte COLS = 3;
+  char hexaKeys[ROWS][COLS] = {
+    {'1', '2', '3'},
+    {'4', '5', '6'},
+    {'7', '8', '9'},
+    {'*', '0', '#'}
+  }
+  byte rowPins[ROWS] = {9, 8, 7, 6};
+  byte colPins[COLS] = {5, 4, 3}
+  //initializes an instance of the Keypad class
+  char Data[Password_Length];
+  char Master[Password_Length] = "4567";
+  byte data_count = 0;
+  char customKey
+  Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS)
+  </code></pre>
+   </section>
+  </div>
+  <script src="../script.js"></script>
+  <script src="../assets/js/highlist.js"></script>
+  <script>
+   hljs.highlightAll();
+  </script>
+ </body>
+</html>
